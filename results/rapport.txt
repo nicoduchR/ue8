@@ -1,0 +1,45 @@
+UE8 — Classification du mouvement du Bitcoin à J+1
+
+Données : 2713 jours, du 17/09/2014 au 19/02/2022.
+Observations exploitables : 2683.
+train : 1608 observations, 16/10/2014 au 11/03/2019, hausses : 55.2%.
+validation : 536 observations, 13/03/2019 au 29/08/2020, hausses : 52.4%.
+test : 537 observations, 31/08/2020 au 18/02/2022, hausses : 53.8%.
+
+Modèle choisi sur l'AUC de validation : Foret aleatoire.
+
+               modele    periode  accuracy  balanced_accuracy     f1  precision  rappel  roc_auc
+Reference majoritaire      train    0.5516             0.5000 0.7110     0.5516  1.0000   0.5000
+Reference majoritaire validation    0.5243             0.5000 0.6879     0.5243  1.0000   0.5000
+Regression logistique      train    0.5653             0.5259 0.6973     0.5661  0.9076   0.5461
+Regression logistique validation    0.5410             0.5209 0.6813     0.5356  0.9359   0.5405
+      Foret aleatoire      train    0.6356             0.6044 0.7329     0.6151  0.9064   0.7398
+      Foret aleatoire validation    0.5541             0.5415 0.6531     0.5515  0.8007   0.5581
+Reference majoritaire       test    0.5382             0.5000 0.6998     0.5382  1.0000   0.5000
+      Foret aleatoire       test    0.5289             0.5162 0.6090     0.5503  0.6817   0.5313
+
+Sur le test : AUC = 0.531 ; exactitude = 52.9%.
+Exactitude de la référence majoritaire : 53.8%.
+
+Métriques par classe sur le test (support = effectif réel) :
+               precision    recall  f1-score   support
+
+Baisse/stable      0.486     0.351     0.407       248
+       Hausse      0.550     0.682     0.609       289
+
+     accuracy                          0.529       537
+    macro avg      0.518     0.516     0.508       537
+ weighted avg      0.521     0.529     0.516       537
+Une AUC de 0,5 correspond à un classement sans pouvoir discriminant.
+Ces scores décrivent une seule période historique ; ils ne prouvent pas une capacité stable à prévoir le marché.
+Le modèle prédit une direction, pas un prix ni la rentabilité d'une stratégie.
+Limites : aucun coût de transaction, aucune information macroéconomique, pas d'intervalle de confiance ; une seule période de test final.
+
+Diagnostic : cinq validations temporelles dans le train initial
+                         mean    std     min     max
+modele
+Foret aleatoire        0.5096  0.039  0.4634  0.5668
+Reference majoritaire  0.5000  0.000  0.5000  0.5000
+Regression logistique  0.5047  0.051  0.4712  0.5907
+La dispersion décrit les différences entre périodes ; ce n'est pas un intervalle de confiance.
+Ce diagnostic ne modifie ni les hyperparamètres ni le modèle choisi. Le test a déjà été consulté lors de la première version du projet.
