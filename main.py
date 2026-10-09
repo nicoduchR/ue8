@@ -11,7 +11,7 @@ from bitcoin_ml.plots import save_figures, save_diagnostics
 
 def main():
     root = Path(__file__).resolve().parent
-    parser = argparse.ArgumentParser(description="UE8 — Prédire la hausse du Bitcoin à J+1")
+    parser = argparse.ArgumentParser(description="UE8 : Prédire la hausse du Bitcoin à J+1")
     parser.add_argument("--data", type=Path, default=root / "data" / "bitcoin.csv")
     parser.add_argument("--output", type=Path, default=root / "results")
     args = parser.parse_args()
@@ -29,7 +29,7 @@ def main():
     save_figures(prices, splits, scores, predictions, selected, args.output)
 
     summary = (
-        "UE8 — Classification du mouvement du Bitcoin à J+1\n\n"
+        "UE8 : Classification du mouvement du Bitcoin à J+1\n\n"
         f"Données : {len(prices)} jours, du {prices.index.min():%d/%m/%Y} "
         f"au {prices.index.max():%d/%m/%Y}.\n"
         f"Observations exploitables : {len(features)}.\n"

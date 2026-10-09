@@ -1,4 +1,4 @@
-# UE8 — Prédire la direction du Bitcoin avec le machine learning
+# UE8 : Prédire la direction du Bitcoin avec le machine learning
 
 Projet individuel bonus, échéance du 9 octobre 2026. Auteur : à compléter.
 
